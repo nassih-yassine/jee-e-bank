@@ -3,19 +3,16 @@ package com.nassih.bankapi.web;
 import com.nassih.bankapi.dtos.AccountHistoryDTO;
 import com.nassih.bankapi.dtos.AccountOperationDTO;
 import com.nassih.bankapi.dtos.BankAccountDTO;
-import com.nassih.bankapi.entities.BankAccount;
 import com.nassih.bankapi.exceptions.BankAccountNotFoundException;
 import com.nassih.bankapi.services.BankAccountService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin("*")
 public class BankAccountRestController {
     private BankAccountService bankAccountService;
 

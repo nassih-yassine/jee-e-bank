@@ -141,7 +141,7 @@ public class BankAccountServiceImpl implements BankAccountService {
                 return dtoMapper.fromSavingBankAccount((SavingAccount) bankAccount);
             else
                 return dtoMapper.fromCurrentBankAccount((CurrentAccount) bankAccount);
-        }).collect(Collectors.toList());
+        }).toList();
     }
 
     @Override
@@ -184,6 +184,12 @@ public class BankAccountServiceImpl implements BankAccountService {
         accountHistoryDTO.setCurrentPage(page);
         accountHistoryDTO.setTotalPages(accountOperations.getTotalPages());
         return accountHistoryDTO;
+    }
+
+    @Override
+    public List<CustomerDTO> searchCustomers(String kw) {
+        List<Customer> customers = customerRepository.searchCustomer(kw);
+        return customers.stream().map(cust -> dtoMapper.fromCustomer(cust)).toList();
     }
 
 

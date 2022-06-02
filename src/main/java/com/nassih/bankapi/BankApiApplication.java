@@ -31,7 +31,7 @@ public class BankApiApplication {
         SpringApplication.run(BankApiApplication.class, args);
     }
 
-    @Bean
+    //@Bean
     CommandLineRunner commandLineRunner(BankAccountService bankAccountService){
      return args -> {
          Stream.of("yassine", "hassan", "simo", "hiba", "hajar").forEach(name -> {
