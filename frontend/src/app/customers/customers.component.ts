@@ -25,7 +25,8 @@ export class CustomersComponent implements OnInit {
       kw: this.fb.control("")
     });
 
-    this.handleSearchCustomers();//remplace le code au de sous, car kw par default = ""
+    this.handleSearchCustomers();
+    //remplace le code au de sous, car kw par default = ""
     // this.customers = this.customerService.getCustomers().pipe(
     //   catchError(err => {
     //     this.errorMessage = err.message;
@@ -54,11 +55,14 @@ export class CustomersComponent implements OnInit {
   }
 
   handleDeleteCustomer(c: Customer) {
+    let conf = confirm("Are you sure?")
+    if(!conf) return ;
+
     this.customerService.deleteCustomer(c.id).subscribe({
       next: resp => {
         this.customers = this.customers.pipe(map(data => {
           let index = data.indexOf(c);
-          data.splice(index, 1);
+          data.slice(index, 1);
           return data;
         }))
       },
