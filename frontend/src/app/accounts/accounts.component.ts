@@ -16,7 +16,7 @@ export class AccountsComponent implements OnInit {
   pageSize: number = 10;
   accountObservable!: Observable<AccountDetails>;//or account$, on met le "$"
   //pour savoir que c'est un observateur
-  errorMessage! : string;
+  errorMessage : string | undefined;
 
   constructor(private fb: FormBuilder, private accountService: AccountsService) {
   }
@@ -37,7 +37,7 @@ export class AccountsComponent implements OnInit {
     let accountId: string = this.accountFormGroup.value.accountId;
     this.accountObservable = this.accountService.getAccount(accountId, this.currentPage, this.pageSize).pipe(
       catchError(err => {
-        this.errorMessage = err.errorMessage.message;
+        this.errorMessage = err.message;
         return throwError(err);
       })
     );
